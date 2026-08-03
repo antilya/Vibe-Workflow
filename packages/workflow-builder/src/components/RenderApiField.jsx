@@ -33,7 +33,7 @@ const RenderApiField = ({ fieldName, meta, idx, formValues, setFormValues, handl
     <div className="flex items-center justify-between w-full group/label">
       <label htmlFor={fieldName} className="text-xs font-bold text-zinc-500 text-start flex-grow cursor-pointer">
         {fieldName}
-        {isRequired && <span className="text-blue-500 text-[9px] ml-1">* required</span>}
+        {isRequired && <span className="text-blue-500 text-micro ml-1">* required</span>}
       </label>
       {onToggleHandle && (
         <button

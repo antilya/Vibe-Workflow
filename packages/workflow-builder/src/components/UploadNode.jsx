@@ -237,14 +237,14 @@ const UploadNode = ({ id, data, formValues, setFormValues, selectedModel, loadin
                     <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 pointer-events-none flex flex-col justify-end">
                       <div className="flex items-center justify-between">
                         <div className="flex flex-col gap-0.5">
-                          <span className="text-[10px] text-white/50 uppercase tracking-tighter font-semibold">Dimensions</span>
+                          <span className="text-caption text-white/50 uppercase tracking-tighter font-semibold">Dimensions</span>
                           <span className="text-xs text-white font-medium tabular-nums">
                             {imageMetadata.width} × {imageMetadata.height}
                           </span>
                         </div>
                         {imageMetadata.size && (
                           <div className="flex flex-col items-end gap-0.5">
-                            <span className="text-[10px] text-white/50 uppercase tracking-tighter font-semibold">File Size</span>
+                            <span className="text-caption text-white/50 uppercase tracking-tighter font-semibold">File Size</span>
                             <span className="text-xs text-white font-medium tabular-nums">{imageMetadata.size}</span>
                           </div>
                         )}
@@ -270,7 +270,8 @@ const UploadNode = ({ id, data, formValues, setFormValues, selectedModel, loadin
                 </button>
               </div>
             ) : (
-              <label 
+              <label
+                data-og-workflow-fixed-dark=""
                 style={{ minHeight: 200 }} 
                 className="cursor-pointer flex flex-col items-center justify-center gap-2 text-gray-400 border border-dashed border-gray-600 rounded-lg p-4 w-full flex-1 hover:bg-gray-700/50 h-full"
               >                <FiUpload size={20} />

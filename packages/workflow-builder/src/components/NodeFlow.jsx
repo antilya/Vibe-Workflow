@@ -2110,12 +2110,12 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
   return (
     <div tabIndex={0} onKeyDown={onKeyDown} className="flex h-dvh w-full relative">
       {isRestoring && (
-        <div className="fixed inset-0 flex items-center justify-center gap-2 bg-black w-full h-full z-20">
+        <div data-og-workflow-chrome="loading" className="fixed inset-0 flex items-center justify-center gap-2 bg-black w-full h-full z-20">
           <div className="w-6 h-6 rounded-full border-[4px] border-white border-t-transparent animate-spin"></div>
           <div className="text-white text-xl font-bold">Loading...</div>
         </div>
       )}
-      <div className="flex items-center justify-center absolute top-0 z-20 bg-[#151618] w-full py-3 border-b border-gray-800">
+      <div data-og-workflow-chrome="toolbar" className="flex items-center justify-center absolute top-0 z-20 bg-[#151618] w-full py-3 border-b border-gray-800">
         <div className="flex items-center justify-between w-full max-w-[95%] sm:max-w-[90%] lg:max-w-[80%] overflow-x-auto">
           <div className="flex items-center gap-2 w-[35%]">
             <Link
@@ -2149,6 +2149,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
                 tabIndex={0}
               >
                 <button
+                  data-og-workflow-tone="contrast"
                   type="button"
                   suppressHydrationWarning={true}
                   onClick={() => setIsSettingsOpen(!isSettingsOpen)}
@@ -2195,6 +2196,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
             {interactionMode ? (
               <>
                 <button
+                  data-og-workflow-tone="contrast"
                   type="button"
                   suppressHydrationWarning={true}
                   disabled={isRunning === 2 || !interactionMode}
@@ -2212,6 +2214,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
                   )}
                 </button>
                 <button
+                  data-og-workflow-tone="accent"
                   type="button"
                   suppressHydrationWarning={true}
                   disabled={isRunning === 1 || !interactionMode}
@@ -2231,6 +2234,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
               </>
             ) : (
               <button
+                data-og-workflow-tone="contrast"
                 type="button"
                 suppressHydrationWarning={true}
                 disabled={interactionMode}
@@ -2251,8 +2255,9 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
           </div>
         </div>
       </div>
-      <div className={`absolute left-4 self-center z-20 flex flex-col gap-2 bg-[#151618] p-1 rounded-full border border-gray-700 shadow-xl ${isRestoring && "hidden"}`}>
+      <div data-og-workflow-chrome="tools" className={`absolute left-4 self-center z-20 flex flex-col gap-2 bg-[#151618] p-1 rounded-full border border-gray-700 shadow-xl ${isRestoring && "hidden"}`}>
         <button
+          data-og-workflow-tone="contrast"
           type="button"
           suppressHydrationWarning={true}
           onClick={() => toast.error("This workflow can't be edited.")}
@@ -2273,6 +2278,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
           tabIndex={0}
         >
           <button
+            data-og-workflow-tone="contrast-state"
             type="button"
             suppressHydrationWarning={true}
             disabled={!interactionMode}
@@ -2300,6 +2306,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
           tabIndex={0}
         >
           <button
+            data-og-workflow-tone="contrast-state"
             type="button"
             suppressHydrationWarning={true}
             disabled={!interactionMode}
@@ -2357,6 +2364,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
           <MdOutlineZoomOutMap size={18} />
         </button>
         <button
+          data-og-workflow-tone="contrast-state"
           type="button"
           suppressHydrationWarning={true}
           onClick={() => setIsDragging(!isDragging)}
@@ -2405,6 +2413,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
                   style={{ pointerEvents: 'auto' }}
                 />
                 <div
+                  data-og-workflow-chrome="edge-menu"
                   className="fixed z-50 pointer-events-auto"
                   style={{
                     left: `${edgePicker.cursorPos.x + 10}px`,
@@ -2425,7 +2434,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
         </ReactFlow>
       </div>
       {selectedNode && !["concatNode"].includes(selectedNode.type) && (
-        <div className="absolute right-2 top-16 z-50 w-80 h-full max-h-[90%] bg-[#09090b]/80 backdrop-blur-xl border border-white/20 rounded-2xl flex transition-all duration-300 ease-in-out shadow-2xl">
+        <div data-og-workflow-chrome="properties" className="absolute right-2 top-16 z-50 w-80 h-full max-h-[90%] bg-[#09090b]/80 backdrop-blur-xl border border-white/20 rounded-2xl flex transition-all duration-300 ease-in-out shadow-2xl">
           <button
             type="button"
             suppressHydrationWarning={true}
@@ -2456,7 +2465,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
                   }}
                   tabIndex={0}
                 >
-                  <label className="text-[10px] font-bold text-zinc-500 text-start px-1">Model</label>
+                  <label className="text-caption font-bold text-zinc-500 text-start px-1">Model</label>
                   <button
                     type="button"
                     suppressHydrationWarning={true}
@@ -2480,6 +2489,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
                         {getFilteredModelsForNode(selectedNode).length > 0 ? (
                           getFilteredModelsForNode(selectedNode).map((model, idx) => (
                             <div
+                              data-og-workflow-tone="accent-select"
                               key={idx}
                               className={`flex items-center gap-2 px-3 py-2 cursor-pointer rounded-lg transition-all ${selectedNode?.data?.selectedModel?.id === model.id
                                   ? "bg-blue-500/10 text-blue-400"
@@ -2520,11 +2530,12 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
                     ) : selectedNode.type === "apiNode" ? (
                       <div className="flex flex-col gap-2 w-full h-full relative pt-2">
                         <button
+                          data-og-workflow-tone="accent"
                           type="button"
                           suppressHydrationWarning={true}
                           onClick={() => selectedNode && runNodeInputsFromFlow(selectedNode.id)}
                           disabled={selectedNode?.data?.loading === 1}
-                          className="absolute top-0 z-10 text-[10px] font-bold flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 group disabled:cursor-not-allowed rounded-full text-white bg-blue-600 px-3 py-1 border border-blue-500/50 hover:bg-blue-500 transition-all self-end shadow-lg shadow-blue-900/20"
+                          className="absolute top-0 z-10 text-caption font-bold flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 group disabled:cursor-not-allowed rounded-full text-white bg-blue-600 px-3 py-1 border border-blue-500/50 hover:bg-blue-500 transition-all self-end shadow-lg shadow-blue-900/20"
                         >
                           {selectedNode?.data?.loading === 1 ? (
                             <><div className="w-3 h-3 rounded-full border border-t-transparent group-hover:border-t-transparent border-black group-hover:border-white animate-spin"></div>Generating...</>
@@ -2692,6 +2703,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
               </label>
               {!selectedNode?.data?.selectedModel?.id?.includes("passthrough") && (
                 <button
+                  data-og-workflow-tone="accent"
                   type="button"
                   suppressHydrationWarning={true}
                   onClick={() => selectedNode && runNodeFromFlow(selectedNode.id)}
@@ -2723,6 +2735,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
       )}
       {contextMenu && (
         <div
+          data-og-workflow-chrome="context-menu"
           className="fixed z-40"
           style={{
             top: contextMenu.y,
@@ -2738,6 +2751,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
         </div>
       )}
       <div
+        data-og-workflow-chrome="save-dialog"
         className={`fixed inset-0 flex flex-col items-center justify-center z-50 overflow-auto bg-black/30 backdrop-blur transition-all duration-200 ease-in-out ${
           dropDown === 2 ? "opacity-100 scale-100 visible" : "opacity-0 scale-80 invisible"
         }`}
@@ -2766,6 +2780,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
               Cancel
             </button>
             <button
+              data-og-workflow-tone="contrast-accent-hover"
               type="button"
               suppressHydrationWarning={true}
               onClick={handleSaveWorkFlow}
@@ -2779,7 +2794,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
       {nodes.length === 0 && !isPresetsDismissed && interactionMode && (
         <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
           <div className="pointer-events-auto flex flex-col items-center gap-6 animate-in fade-in zoom-in duration-300 transform scale-90 md:scale-100 overflow-y-auto custom-scrollbar max-w-[90%] max-h-[80%] p-10">
-            <div className="flex flex-col items-center gap-2 bg-black/40 backdrop-blur-md px-6 py-3 rounded-lg border border-white/10 shadow-xl">
+            <div data-og-workflow-light-copy="preset-intro" className="flex flex-col items-center gap-2 bg-black/40 backdrop-blur-md px-6 py-3 rounded-lg border border-white/10 shadow-xl">
               <h2 className="text-xl font-semibold text-white tracking-tight">Select a Workflow</h2>
               <p className="text-xs text-gray-400 font-medium uppercase tracking-widest">or start from scratch</p>
             </div>
@@ -2795,7 +2810,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
                   <div className="z-10 p-2 bg-[#242629] border-b border-gray-700 flex items-center px-3 justify-between">
                     <div className="flex items-center gap-2">
                       <div className={`w-2 h-2 rounded-full ${preset.id === "empty-workflow" ? "bg-gray-400" : "bg-blue-500"}`}></div>
-                      <span className="text-[10px] font-bold text-gray-300 uppercase tracking-wider">{preset.id === "empty-workflow" ? "NEW" : "PRESET"}</span>
+                      <span className="text-caption font-bold text-gray-300 uppercase tracking-wider">{preset.id === "empty-workflow" ? "NEW" : "PRESET"}</span>
                     </div>
                     <div className="flex gap-1">
                       <div className="w-1.5 h-1.5 rounded-full bg-gray-600"></div>
@@ -2818,7 +2833,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
                       </div>
                     )}
                     {preset.description && (
-                      <p className="z-10 text-[11px] text-gray-300 leading-relaxed border-t border-gray-500 pt-2 mt-auto">
+                      <p className="z-10 text-compact text-gray-300 leading-relaxed border-t border-gray-500 pt-2 mt-auto">
                         {preset.description}
                       </p>
                     )}
@@ -2848,7 +2863,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
         />
       )}
       {isCategoryPopupOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+        <div data-og-workflow-chrome="category-dialog" className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
           <div className="bg-[#1b1e23] border border-gray-700 rounded-2xl w-full max-w-md shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
             <div className="p-6">
               <h3 className="text-lg font-semibold text-white mb-4">Edit Workflow Category</h3>
@@ -2876,6 +2891,7 @@ const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
                 Cancel
               </button>
               <button
+                data-og-workflow-tone="accent"
                 type="button"
                 suppressHydrationWarning={true}
                 onClick={handleCategorySave}

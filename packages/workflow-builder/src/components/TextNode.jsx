@@ -436,7 +436,7 @@ const TextGeneration = ({ id, data, selected }) => {
         <div className="loader-border" />
       )}
       <div className="flex items-center gap-2 absolute -top-5 left-0">
-        <h3 className="text-zinc-400 text-[10px] font-medium tracking-wider uppercase">
+        <h3 className="text-zinc-400 text-caption font-medium tracking-wider uppercase">
           Text {id.replace(/^\D+/g, "")}
         </h3>
         {generationCost !== null && !selectedModel?.id.includes("passthrough") && (
@@ -477,7 +477,7 @@ const TextGeneration = ({ id, data, selected }) => {
               </button>
                 
               <div className="flex items-center gap-1.5 px-1">
-                <span className="text-[9px] font-bold text-white/90 tabular-nums tracking-wide">
+                <span className="text-micro font-bold text-white/90 tabular-nums tracking-wide">
                   {currentHistoryIndex + 1}/{outputHistory.length}
                 </span>
                 <div className="w-[1px] h-2.5 bg-white/10" />
@@ -560,7 +560,7 @@ const TextGeneration = ({ id, data, selected }) => {
                   >
                     <FaAngleLeft size={12} />
                   </button>
-                  <span className="text-[10px] text-white/80 tabular-nums">
+                  <span className="text-caption text-white/80 tabular-nums">
                     {currentOutputIndex + 1}/{currentOutputList.length}
                   </span>
                   <button
@@ -580,7 +580,7 @@ const TextGeneration = ({ id, data, selected }) => {
           ) : (
             <div className="flex flex-col items-center justify-center text-zinc-400 gap-2">
               <TfiText size={32} />
-              <span className="text-[10px] italic">Result appeared here...</span>
+              <span className="text-caption italic">Result appeared here...</span>
             </div>
           )}
         </div>
@@ -608,7 +608,7 @@ const TextGeneration = ({ id, data, selected }) => {
       />
       {hasPrompt && (
         <p 
-          className={`absolute -left-9 top-[100px] text-[10px] font-bold tracking-tight text-blue-500 transition-all duration-300 ${
+          className={`absolute -left-9 top-[100px] text-caption font-bold tracking-tight text-blue-500 transition-all duration-300 ${
             data.activeHandleColor === "blue" 
               ? "opacity-100 translate-x-0" 
               : "opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0"
@@ -641,7 +641,7 @@ const TextGeneration = ({ id, data, selected }) => {
       />
       {hasImageUrl && (
         <p 
-          className={`absolute -left-11 top-[150px] text-[10px] font-bold tracking-tight text-emerald-500 transition-all duration-300 ${
+          className={`absolute -left-11 top-[150px] text-caption font-bold tracking-tight text-emerald-500 transition-all duration-300 ${
             data.activeHandleColor === "green" 
               ? "opacity-100 translate-x-0" 
               : "opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0"
@@ -674,7 +674,7 @@ const TextGeneration = ({ id, data, selected }) => {
       />
       {hasImagesList && (
         <p 
-          className={`absolute -left-11 top-[200px] text-[10px] font-bold tracking-tight text-emerald-500 transition-all duration-300 ${
+          className={`absolute -left-11 top-[200px] text-caption font-bold tracking-tight text-emerald-500 transition-all duration-300 ${
             data.activeHandleColor === "green" 
               ? "opacity-100 translate-x-0" 
               : "opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0"
@@ -707,7 +707,7 @@ const TextGeneration = ({ id, data, selected }) => {
       />
       {hasSystemPrompt && (
         <p 
-          className={`absolute -left-14 top-[250px] text-[10px] font-bold tracking-tight text-blue-600 transition-all duration-300 ${
+          className={`absolute -left-14 top-[250px] text-caption font-bold tracking-tight text-blue-600 transition-all duration-300 ${
             data.activeHandleColor === "blue" 
               ? "opacity-100 translate-x-0" 
               : "opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0"
@@ -737,7 +737,7 @@ const TextGeneration = ({ id, data, selected }) => {
         data-type="blue"
       />
       <p 
-        className={`absolute -right-9 top-[100px] text-[10px] font-bold tracking-tight text-blue-500 transition-all duration-300 ${
+        className={`absolute -right-9 top-[100px] text-caption font-bold tracking-tight text-blue-500 transition-all duration-300 ${
           data.activeHandleColor === "blue" 
             ? "opacity-100 translate-x-0" 
             : "opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0"

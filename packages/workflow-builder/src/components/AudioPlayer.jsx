@@ -84,7 +84,7 @@ const AudioPlayer = ({ src, className }) => {
   const bars = [40, 70, 45, 90, 65, 30, 85, 50, 75, 40, 60, 95, 20, 55, 80, 35, 70, 45, 90, 60];
 
   return (
-    <div className={className || "flex flex-col items-center justify-center p-4 w-full h-full bg-gradient-to-br from-[#121418] to-[#08090a] rounded-xl border border-white/5 relative group transition-all duration-500 select-none"}>
+    <div data-og-workflow-fixed-dark="" className={className || "flex flex-col items-center justify-center p-4 w-full h-full bg-gradient-to-br from-[#121418] to-[#08090a] rounded-xl border border-white/5 relative group transition-all duration-500 select-none"}>
       <audio ref={audioRef} src={src} crossOrigin="anonymous" />
       <div 
         className="flex items-center justify-center gap-[2px] w-full h-12 mb-4 px-4 overflow-hidden"
@@ -135,10 +135,10 @@ const AudioPlayer = ({ src, className }) => {
             }}
           />
           <div className="flex justify-between items-center w-full">
-            <span className="text-[10px] text-gray-500 font-medium tracking-tight tabular-nums">
+            <span className="text-caption text-gray-500 font-medium tracking-tight tabular-nums">
               {formatTime(currentTime)}
             </span>
-            <span className="text-[10px] text-gray-500 font-medium tracking-tight tabular-nums">
+            <span className="text-caption text-gray-500 font-medium tracking-tight tabular-nums">
               {formatTime(duration)}
             </span>
           </div>

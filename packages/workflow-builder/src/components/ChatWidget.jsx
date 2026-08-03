@@ -162,14 +162,14 @@ const CodeBlock = ({ language, value }) => {
   return (
     <div className="my-4 rounded-xl overflow-hidden border border-white/10 bg-black/60 shadow-2xl group/code">
       <div className="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/5">
-        <span className="text-[10px] uppercase tracking-widest font-bold text-gray-400">
+        <span className="text-caption uppercase tracking-widest font-bold text-gray-400">
           {language || "code"}
         </span>
         <button
           type="button"
           suppressHydrationWarning={true}
           onClick={handleCopy}
-          className="flex items-center gap-1.5 text-[10px] font-medium text-gray-400 hover:text-white transition-colors"
+          className="flex items-center gap-1.5 text-caption font-medium text-gray-400 hover:text-white transition-colors"
         >
           {copied ? (
             <>
@@ -185,7 +185,7 @@ const CodeBlock = ({ language, value }) => {
         </button>
       </div>
       <div className="p-4 overflow-x-auto custom-scrollbar">
-        <code className="text-[13px] font-mono text-gray-200 leading-relaxed block whitespace-pre">
+        <code className="text-ui font-mono text-gray-200 leading-relaxed block whitespace-pre">
           {value}
         </code>
       </div>
@@ -294,7 +294,7 @@ const ChatWidget = ({ isOpen, toggleChat, messages, onSendMessage, isLoading, on
   return (
     <div ref={widgetRef} className="fixed bottom-10 right-10 z-50 flex flex-col items-end gap-2 font-sans">
       {isOpen && (
-        <div className={`${isWide ? 'w-[800px]' : 'w-[380px]'} max-w-[100vw] h-[600px] max-h-[100%] flex flex-col bg-[#0B0F17]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-300 animate-in slide-in-from-bottom-5 fade-in text-left`}>
+        <div data-og-workflow-fixed-dark="" className={`${isWide ? 'w-[800px]' : 'w-[380px]'} max-w-[100vw] h-[600px] max-h-[100%] flex flex-col bg-[#0B0F17]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-300 animate-in slide-in-from-bottom-5 fade-in text-left`}>
           <div className="flex items-center justify-between p-4 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border-b border-white/10">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-blue-600 rounded-lg shadow-lg">
@@ -378,7 +378,7 @@ const ChatWidget = ({ isOpen, toggleChat, messages, onSendMessage, isLoading, on
                   <React.Fragment key={idx}>
                     {showDateLabel && (
                       <div className="flex justify-center my-2">
-                        <span className="px-3 py-1 bg-white/5 text-[10px] uppercase font-bold text-gray-500 rounded-full border border-white/10">
+                        <span className="px-3 py-1 bg-white/5 text-caption uppercase font-bold text-gray-500 rounded-full border border-white/10">
                           {isMounted ? formatMessageDate(msg.timestamp) : "---"}
                         </span>
                       </div>
@@ -412,7 +412,7 @@ const ChatWidget = ({ isOpen, toggleChat, messages, onSendMessage, isLoading, on
                               const match = /language-(\w+)/.exec(className || "");
                               const lang = match ? match[1] : "";
                               return inline ? (
-                                <code className="bg-white/10 rounded-md px-1.5 py-0.5 text-[13px] font-mono text-pink-400" {...props}>{children}</code>
+                                <code className="bg-white/10 rounded-md px-1.5 py-0.5 text-ui leading-relaxed font-mono text-pink-400" {...props}>{children}</code>
                               ) : (
                                 <CodeBlock language={lang} value={String(children).replace(/\n$/, "")} />
                               );
@@ -426,10 +426,10 @@ const ChatWidget = ({ isOpen, toggleChat, messages, onSendMessage, isLoading, on
                               </div>
                             ),
                             th: ({node, ...props}) => (
-                              <th className="px-4 py-3 bg-gradient-to-b from-white/10 to-white/5 text-left text-[11px] font-bold uppercase tracking-wider text-blue-400 border-b border-white/10" {...props} />
+                              <th className="px-4 py-3 bg-gradient-to-b from-white/10 to-white/5 text-left text-compact leading-relaxed font-bold uppercase tracking-wider text-blue-400 border-b border-white/10" {...props} />
                             ),
                             td: ({node, ...props}) => (
-                              <td className="px-4 py-2.5 text-[13px] text-gray-300 border-b border-white/5 transition-colors" {...props} />
+                              <td className="px-4 py-2.5 text-ui leading-relaxed text-gray-300 border-b border-white/5 transition-colors" {...props} />
                             ),
                             tr: ({node, ...props}) => (
                               <tr className="group transition-colors odd:bg-transparent even:bg-white-[0.02]" {...props} />
@@ -458,7 +458,7 @@ const ChatWidget = ({ isOpen, toggleChat, messages, onSendMessage, isLoading, on
                         )}
                       </div>
                       <div className="flex items-center gap-2 mt-1 px-1">
-                        <span className="text-[10px] text-gray-400">
+                        <span className="text-caption text-gray-400">
                           {isMounted ? formatMessageTime(msg.timestamp) : "--:--"}
                         </span>
                         <button
@@ -485,7 +485,7 @@ const ChatWidget = ({ isOpen, toggleChat, messages, onSendMessage, isLoading, on
                       <span className="w-1.5 h-1.5 bg-purple-500 rounded-full animate-bounce [animation-delay:-0.15s]" />
                       <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce" />
                     </div>
-                    <span className="text-[10px] font-medium text-gray-500 tracking-widest ml-1">{loadingTexts[loadingStep]}...</span>
+                    <span className="text-caption font-medium text-gray-500 tracking-widest ml-1">{loadingTexts[loadingStep]}...</span>
                   </div>
                 </div>
               </div>

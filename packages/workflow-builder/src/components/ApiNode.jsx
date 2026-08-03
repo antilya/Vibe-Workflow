@@ -571,7 +571,8 @@ const ApiNode = ({ id, data, selected }) => {
   const minHeight = Math.max(208, 150 + filteredTaskDataEntries.length * 50);
 
   return (
-    <div 
+    <div
+      data-og-workflow-fixed-dark=""
       style={{ minHeight }} 
       className={`
         nowheel group flex flex-col w-80 
@@ -583,7 +584,7 @@ const ApiNode = ({ id, data, selected }) => {
       `}
     >
       <div className="flex items-center gap-2 absolute -top-5 left-0">
-        <h3 className="text-zinc-400 text-[10px] font-medium tracking-wider uppercase">
+        <h3 className="text-zinc-400 text-caption font-medium tracking-wider uppercase">
           Api {id.replace(/^\D+/g, "")}
         </h3>
         <span className="text-xs text-blue-500 -mt-0.5 font-medium flex items-center gap-1 opacity-80">
@@ -613,7 +614,7 @@ const ApiNode = ({ id, data, selected }) => {
                 <FaAngleLeft size={10} />
               </button>
               <div className="flex items-center gap-1.5 px-0.5">
-                <span className="text-[9px] font-medium text-white/90 tabular-nums tracking-wide">
+                <span className="text-micro font-medium text-white/90 tabular-nums tracking-wide">
                   {currentHistoryIndex + 1}/{outputHistory.length}
                 </span>
                 <div className="w-[1px] h-2.5 bg-white/10" />
@@ -660,7 +661,7 @@ const ApiNode = ({ id, data, selected }) => {
           <div className="flex items-center justify-center w-full h-full overflow-hidden aspect-[1/1] bg-white/5 animate-pulse rounded-b-2xl">
             <div className="flex flex-col items-center gap-3">
               <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-              <span className="text-[10px] font-bold text-blue-500 tracking-wider uppercase">Processing...</span>
+              <span className="text-caption font-bold text-blue-500 tracking-wider uppercase">Processing...</span>
             </div>
           </div>
         ) : data.errorMsg ? (
@@ -684,7 +685,7 @@ const ApiNode = ({ id, data, selected }) => {
                 />
               ) : currentOutputList[currentOutputIndex]?.type === 'audio_url' ? (
                 <div className="w-full px-4">
-                  <p className="text-[10px] text-white/40 mb-2 truncate">{currentOutput}</p>
+                  <p className="text-caption text-white/40 mb-2 truncate">{currentOutput}</p>
                   <audio src={currentOutput} controls className="w-full" />
                 </div>
               ) : (
@@ -693,7 +694,7 @@ const ApiNode = ({ id, data, selected }) => {
                     ref={textareaRef}
                     readOnly
                     value={typeof currentOutput === 'object' ? JSON.stringify(currentOutput, null, 2) : String(currentOutput)}
-                    className="w-full text-[10px] leading-relaxed outline-none bg-[#1c1e21] border border-gray-700 rounded-lg p-2 resize-none overflow-hidden text-white font-medium shadow-inner"
+                    className="w-full text-caption leading-relaxed outline-none bg-[#1c1e21] border border-gray-700 rounded-lg p-2 resize-none overflow-hidden text-white font-medium shadow-inner"
                     style={{ minHeight: "60px" }}
                   />
                 </div>
@@ -712,7 +713,7 @@ const ApiNode = ({ id, data, selected }) => {
                 >
                   <FaAngleLeft size={12} />
                 </button>
-                <span className="text-[10px] text-white/80 tabular-nums">
+                <span className="text-caption text-white/80 tabular-nums">
                   {currentOutputIndex + 1}/{currentOutputList.length}
                 </span>
                 <button
@@ -732,7 +733,7 @@ const ApiNode = ({ id, data, selected }) => {
         ) : (
           <div className="flex flex-col items-center justify-center text-zinc-400 gap-2">
             <RiInputMethodLine size={32} />
-            <span className="text-[10px] italic">Result appeared here...</span>
+            <span className="text-caption italic">Result appeared here...</span>
           </div>
         )}
       </div>    
