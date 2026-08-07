@@ -68,8 +68,8 @@ const UploadNode = ({ id, data, formValues, setFormValues, selectedModel, loadin
           setUploadProgress(percentCompleted);
         }
       })
-      .then(() => {
-        const uploadedUrl = resolveAssetUrl(fields.key);
+      .then((uploadResponse) => {
+        const uploadedUrl = uploadResponse.data?.url || resolveAssetUrl(fields.key);
         setFormValues(prev => ({ ...prev, [type]: uploadedUrl }));
 
         setTimeout(() => {

@@ -82,8 +82,8 @@ const RenderField = ({ fieldName, meta, idx, formValues, setFormValues, handleCh
           setUploadProgress(percentCompleted);
         }
       })
-      .then(() => {
-        const uploadedUrl = resolveAssetUrl(fields.key);
+      .then((uploadResponse) => {
+        const uploadedUrl = uploadResponse.data?.url || resolveAssetUrl(fields.key);
         setFormValues((prev) => { 
           const current = prev[field];
           const updatedValue = fieldSchema.type === 'array'
