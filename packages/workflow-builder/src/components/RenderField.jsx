@@ -6,8 +6,10 @@ import { FiUpload } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 import AudioPlayer from "./AudioPlayer";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { useAssetUrlResolver } from "../AssetUrlContext";
 
 const RenderField = ({ fieldName, meta, idx, formValues, setFormValues, handleChange, data, modelName }) => {
+  const resolveAssetUrl = useAssetUrlResolver();
   const [uploadProgress, setUploadProgress] = useState(0);
   const [dropDown, setDropDown] = useState(-1);
   const [uploading, setUploading] = useState(false);
@@ -21,9 +23,9 @@ const RenderField = ({ fieldName, meta, idx, formValues, setFormValues, handleCh
   const value = formValues[fieldName] ?? meta.default ?? "";
   const isRequired = data.required && data.required.includes(fieldName);
   const label = (
-    <label className="text-[10px] font-bold text-zinc-500 text-start px-1 mb-1">
+    <label className="text-caption font-bold text-zinc-500 text-start px-1 mb-1">
       {meta.title || fieldName}
-      {isRequired && <span className="text-blue-500 text-[9px] ml-1">* required</span>}
+      {isRequired && <span className="text-blue-500 text-micro ml-1">* required</span>}
     </label>
   );
 
@@ -80,8 +82,8 @@ const RenderField = ({ fieldName, meta, idx, formValues, setFormValues, handleCh
           setUploadProgress(percentCompleted);
         }
       })
-      .then(() => {
-        const uploadedUrl = `https://cdn.muapi.ai/${fields.key}`;
+      .then((uploadResponse) => {
+        const uploadedUrl = uploadResponse.data?.url || resolveAssetUrl(fields.key);
         setFormValues((prev) => { 
           const current = prev[field];
           const updatedValue = fieldSchema.type === 'array'
@@ -251,7 +253,7 @@ const RenderField = ({ fieldName, meta, idx, formValues, setFormValues, handleCh
       <div key={fieldName} className="flex flex-col gap-1">
         <div className="flex items-center justify-between">
           {label}
-          <span className="text-[10px] text-gray-500">{imageList.length}/{meta.maxItems}</span>
+          <span className="text-caption text-gray-500">{imageList.length}/{meta.maxItems}</span>
         </div>
         <div className="grid grid-cols-3 gap-2">
           {imageList.map((url, idx) => (
@@ -343,7 +345,7 @@ const RenderField = ({ fieldName, meta, idx, formValues, setFormValues, handleCh
             //   const clamped = Math.max(meta.minValue, Math.min(val, meta.maxValue));
             //   handleChange(fieldName, clamped);
             // }} 
-            className="w-12 h-8 text-center text-white rounded-lg border border-white/10 text-[10px] font-bold bg-zinc-900/50 outline-none focus:border-blue-500/50 transition-all" 
+            className="w-12 h-8 text-center text-white rounded-lg border border-white/10 text-caption font-bold bg-zinc-900/50 outline-none focus:border-blue-500/50 transition-all"
           />
         </div>
       </div>

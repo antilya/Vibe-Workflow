@@ -152,7 +152,7 @@ const VideoPlayer = ({
               />
             </div>
             
-            <span className="text-[10px] text-white/70 font-medium tabular-nums">
+            <span className="text-caption text-white/70 font-medium tabular-nums">
               {formatTime(currentTime)} / {formatTime(duration)}
             </span>
           </div>

@@ -206,7 +206,7 @@ const PromptConcate = ({ id, data, selected }) => {
         bg-[#0c0d0f]/95 backdrop-blur-sm
       `}
     >
-      <h3 className="absolute -top-5 left-0 text-zinc-400 text-[10px] font-medium tracking-wider uppercase">
+      <h3 className="absolute -top-5 left-0 text-zinc-400 text-caption font-medium tracking-wider uppercase">
         Prompt Concatenator {id.replace(/^\D+/g, "")}
       </h3>
       <div className="flex flex-col">

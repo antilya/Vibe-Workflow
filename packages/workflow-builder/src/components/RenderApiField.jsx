@@ -8,8 +8,11 @@ import AudioPlayer from "./AudioPlayer";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { Handle, Position } from "reactflow";
 import { TbBoxModel2, TbExternalLink } from "react-icons/tb";
+import { useAssetUrlResolver } from "../AssetUrlContext";
 
 const RenderApiField = ({ fieldName, meta, idx, formValues, setFormValues, handleChange, hasHandle = false, exposedHandles = [], onToggleHandle }) => {
+  const resolveAssetUrl = useAssetUrlResolver();
+  const assetUrlPrefix = resolveAssetUrl("");
   const [uploadProgress, setUploadProgress] = useState(0);
   const [dropDown, setDropDown] = useState(-1);
   const [uploading, setUploading] = useState(false);
@@ -19,7 +22,7 @@ const RenderApiField = ({ fieldName, meta, idx, formValues, setFormValues, handl
 
   const isImageUrl = (url) => {
     if (typeof url !== 'string') return false;
-    return url.match(/\.(jpeg|jpg|gif|png|webp|avif|HEIC)(\?.*)?$/i) !== null || url.startsWith('https://cdn.muapi.ai/');
+    return url.match(/\.(jpeg|jpg|gif|png|webp|avif|HEIC)(\?.*)?$/i) !== null || url.startsWith(assetUrlPrefix);
   };
 
   const isImageField = ['image', 'last_image', 'image_url'].includes(meta.field) || 
@@ -33,7 +36,7 @@ const RenderApiField = ({ fieldName, meta, idx, formValues, setFormValues, handl
     <div className="flex items-center justify-between w-full group/label">
       <label htmlFor={fieldName} className="text-xs font-bold text-zinc-500 text-start flex-grow cursor-pointer">
         {fieldName}
-        {isRequired && <span className="text-blue-500 text-[9px] ml-1">* required</span>}
+        {isRequired && <span className="text-blue-500 text-micro ml-1">* required</span>}
       </label>
       {onToggleHandle && (
         <button
@@ -98,8 +101,8 @@ const RenderApiField = ({ fieldName, meta, idx, formValues, setFormValues, handl
           setUploadProgress(percentCompleted);
         }
       })
-      .then(() => {
-        const uploadedUrl = `https://cdn.muapi.ai/${fields.key}`;
+      .then((uploadResponse) => {
+        const uploadedUrl = uploadResponse.data?.url || resolveAssetUrl(fields.key);
         setFormValues((prev) => { 
           const current = prev[field];
           const updatedValue = fieldSchema.type === 'array'

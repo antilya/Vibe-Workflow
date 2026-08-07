@@ -474,7 +474,7 @@ const ImageGeneration = ({ id, data, selected }) => {
         <div className="loader-border" />
       )}
       <div className="flex items-center gap-2 absolute -top-5 left-0">
-        <h3 className="text-zinc-400 text-[10px] font-medium tracking-wider uppercase">
+        <h3 className="text-zinc-400 text-caption font-medium tracking-wider uppercase">
           Image {id.replace(/^\D+/g, "")}
         </h3>
         {generationCost !== null && !selectedModel?.id.includes("passthrough") && (
@@ -514,7 +514,7 @@ const ImageGeneration = ({ id, data, selected }) => {
                 <FaAngleLeft size={10} />
               </button>
               <div className="flex items-center gap-1.5 px-0.5">
-                <span className="text-[9px] font-medium text-white/90 tabular-nums tracking-wide">
+                <span className="text-micro font-medium text-white/90 tabular-nums tracking-wide">
                   {currentHistoryIndex + 1}/{outputHistory.length}
                 </span>
                 <div className="w-[1px] h-2.5 bg-white/10" />
@@ -568,7 +568,7 @@ const ImageGeneration = ({ id, data, selected }) => {
             <div className="flex items-center justify-center w-full h-full overflow-hidden aspect-[1/1] bg-white/5 animate-pulse rounded-b-2xl">
               <div className="flex flex-col items-center gap-3">
                 <div className="w-8 h-8 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
-                <span className="text-[10px] font-bold text-emerald-500 tracking-wider uppercase">Generating...</span>
+                <span className="text-caption font-bold text-emerald-500 tracking-wider uppercase">Generating...</span>
               </div>
             </div>
           ) : data.errorMsg ? (
@@ -612,14 +612,14 @@ const ImageGeneration = ({ id, data, selected }) => {
               <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover/image:opacity-100 transition-opacity duration-300 pointer-events-none rounded-b-xl flex flex-col justify-end">
                 <div className="flex items-center justify-between">
                   <div className="flex flex-col gap-0.5">
-                    <span className="text-[10px] text-white/50 uppercase tracking-tighter font-semibold">Dimensions</span>
+                    <span className="text-caption text-white/50 uppercase tracking-tighter font-semibold">Dimensions</span>
                     <span className="text-xs text-white font-medium tabular-nums">
                       {imageMetadata.width} × {imageMetadata.height}
                     </span>
                   </div>
                   {imageMetadata.size && (
                     <div className="flex flex-col items-end gap-0.5">
-                      <span className="text-[10px] text-white/50 uppercase tracking-tighter font-semibold">File Size</span>
+                      <span className="text-caption text-white/50 uppercase tracking-tighter font-semibold">File Size</span>
                       <span className="text-xs text-white font-medium tabular-nums">{imageMetadata.size}</span>
                     </div>
                   )}
@@ -641,7 +641,7 @@ const ImageGeneration = ({ id, data, selected }) => {
           ) : (
             <div className="flex flex-col items-center justify-center text-zinc-400 gap-2">
               <IoImageOutline size={32} />
-              <span className="text-[10px] italic">Result appeared here...</span>
+              <span className="text-caption italic">Result appeared here...</span>
             </div>
           )}
         </div>

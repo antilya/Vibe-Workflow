@@ -313,7 +313,7 @@ const NodesNavbar = ({ addNode, apiNodeModels, filterNodeTypes = null, nodeSchem
           <div className="flex flex-col gap-3 overflow-y-auto custom-scrollbar min-h-0">
             {filteredMenuStructure.map((section, idx) => (
               <div key={idx} className="flex flex-col gap-1">
-                <h3 className="text-[10px] text-gray-500 text-left px-2 font-medium sticky top-0 bg-[#151618] z-10">{section.label}</h3>
+                <h3 className="text-caption text-gray-500 text-left px-2 font-medium sticky top-0 bg-[#151618] z-10">{section.label}</h3>
                 <div className="flex flex-col gap-0.5">
                   {section.items.map((item, i) => (
                     <div
@@ -339,7 +339,7 @@ const NodesNavbar = ({ addNode, apiNodeModels, filterNodeTypes = null, nodeSchem
                         <span className="text-xs font-medium">{item.label}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        {item.shortcut && <span className="text-[10px] text-gray-600">{item.shortcut}</span>}
+                        {item.shortcut && <span className="text-caption text-gray-600">{item.shortcut}</span>}
                         {item.hasSubmenu && <FaAngleRight size={10} className="text-gray-500" />}
                       </div>
                     </div>
@@ -447,7 +447,7 @@ const Submenu = ({ activeSubMenu, menuStructure, getSubmenuItems, handleAddNode,
       className={`absolute flex flex-col gap-2 bg-[#151618] border border-gray-700 p-2 rounded-xl w-60 shadow-xl overflow-hidden z-50 ${position.side === "overlay" ? "h-full" : "h-fit max-h-[80vh]"} ${getOverlayClass()}`}
     >
       <div
-        className="flex items-center gap-2 text-[10px] text-gray-400 px-2 py-2 font-medium border-b border-gray-800 cursor-pointer hover:text-white transition-colors"
+        className="flex items-center gap-2 text-caption text-gray-400 px-2 py-2 font-medium border-b border-gray-800 cursor-pointer hover:text-white transition-colors"
         onClick={() => position.side === "overlay" && onBack()}
       >
         {position.side === "overlay" && <FaAngleLeft />}
