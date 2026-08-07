@@ -28,7 +28,7 @@ import TextGeneration from "./TextNode";
 import ImageGeneration from "./ImageNode";
 import VideoGeneration from "./VideoNode";
 import { setWorkflowIds } from "./WorkflowStore";
-import { apiNodeModels, audioModels, concatModels, imageModels, textModels, videoModels, videoCombinerModels, presets } from "./utility";
+import { apiNodeModels, audioModels, concatModels, createPresets, imageModels, textModels, videoModels, videoCombinerModels } from "./utility";
 import Link from "next/link";
 import RenderField from "./RenderField";
 import PromptConcate from "./PromptConcate";
@@ -42,6 +42,7 @@ import ChatWidget from "./ChatWidget";
 import { AiOutlineAudio } from "react-icons/ai";
 import VideoCombiner from "./VideoCombiner";
 import { useGenerationCost } from "./useGenerationCost";
+import { useAssetUrlResolver } from "../AssetUrlContext";
 
 const nodeTypes = {
   textNode: TextGeneration,
@@ -222,6 +223,8 @@ const processWorkflowData = (workflowData, nodeSchemas, id) => {
 const NodeFlow = ({ apiKey, initialNodeSchemas, initialWorkflowData }) => {
   const params = useParams();
   const { id } = params;
+  const resolveAssetUrl = useAssetUrlResolver();
+  const presets = useMemo(() => createPresets(resolveAssetUrl), [resolveAssetUrl]);
 
   // The npm resolution for this package pulls in its own, separate `axios` module
   // instance from Open-Higgsfield-ai/node_modules (different version than the one

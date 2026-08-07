@@ -5,8 +5,10 @@ import axios from "axios";
 import AudioPlayer from "./AudioPlayer";
 import VideoPlayer from "./VideoPlayer";
 import { IoImageOutline, IoTrashOutline } from "react-icons/io5";
+import { useAssetUrlResolver } from "../AssetUrlContext";
 
 const UploadNode = ({ id, data, formValues, setFormValues, selectedModel, loading, uploadType, acceptType }) => {
+  const resolveAssetUrl = useAssetUrlResolver();
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [imageMetadata, setImageMetadata] = useState({ width: 0, height: 0, size: null });
@@ -67,8 +69,7 @@ const UploadNode = ({ id, data, formValues, setFormValues, selectedModel, loadin
         }
       })
       .then(() => {
-        const prefix = "https://cdn.muapi.ai/";
-        const uploadedUrl = prefix + fields.key;
+        const uploadedUrl = resolveAssetUrl(fields.key);
         setFormValues(prev => ({ ...prev, [type]: uploadedUrl }));
 
         setTimeout(() => {

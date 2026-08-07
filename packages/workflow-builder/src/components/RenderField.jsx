@@ -6,8 +6,10 @@ import { FiUpload } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 import AudioPlayer from "./AudioPlayer";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { useAssetUrlResolver } from "../AssetUrlContext";
 
 const RenderField = ({ fieldName, meta, idx, formValues, setFormValues, handleChange, data, modelName }) => {
+  const resolveAssetUrl = useAssetUrlResolver();
   const [uploadProgress, setUploadProgress] = useState(0);
   const [dropDown, setDropDown] = useState(-1);
   const [uploading, setUploading] = useState(false);
@@ -81,7 +83,7 @@ const RenderField = ({ fieldName, meta, idx, formValues, setFormValues, handleCh
         }
       })
       .then(() => {
-        const uploadedUrl = `https://cdn.muapi.ai/${fields.key}`;
+        const uploadedUrl = resolveAssetUrl(fields.key);
         setFormValues((prev) => { 
           const current = prev[field];
           const updatedValue = fieldSchema.type === 'array'
